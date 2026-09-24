@@ -1,0 +1,11 @@
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.AssemblyInfoInputs.cache
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.AssemblyInfo.cs
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.csproj.CoreCompileInputs.cache
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\bin\Release\net10.0\AutoOC.deps.json
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\bin\Release\net10.0\AutoOC.dll
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\bin\Release\net10.0\AutoOC.pdb
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.dll
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\refint\AutoOC.dll
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\AutoOC.pdb
+C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\AutoOC\AutoOC\obj\Release\net10.0\ref\AutoOC.dll

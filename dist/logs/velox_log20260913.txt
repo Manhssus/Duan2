@@ -1,0 +1,12 @@
+2026-09-13 19:28:24.523 +07:00 [WRN] Another instance is already running. Signalling it to show.
+2026-09-13 19:33:12.452 +07:00 [DBG] Hosting stopping
+2026-09-13 19:33:12.524 +07:00 [INF] Application is shutting down...
+2026-09-13 19:33:12.526 +07:00 [DBG] Hosting stopped
+2026-09-13 19:51:26.182 +07:00 [DBG] Hosting starting
+2026-09-13 19:51:26.887 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-09-13 19:51:26.907 +07:00 [INF] Hosting environment: Production
+2026-09-13 19:51:26.908 +07:00 [INF] Content root path: C:\Users\Coolboy\Downloads\Universal-x86-Tuning-Utility-26.2.0\dist
+2026-09-13 19:51:26.910 +07:00 [DBG] Hosting started
+2026-09-13 19:53:53.662 +07:00 [DBG] Hosting stopping
+2026-09-13 19:53:53.664 +07:00 [INF] Application is shutting down...
+2026-09-13 19:53:53.668 +07:00 [DBG] Hosting stopped

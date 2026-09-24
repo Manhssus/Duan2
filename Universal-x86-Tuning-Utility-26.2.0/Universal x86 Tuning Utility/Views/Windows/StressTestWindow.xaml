@@ -1,0 +1,330 @@
+<ui:UiWindow
+    x:Class="Universal_x86_Tuning_Utility.Views.Windows.StressTestWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    mc:Ignorable="d"
+    Title="Kiểm Tra Quá Tải &amp; Chấm Điểm Toàn Diện Phần Cứng"
+    Height="690"
+    Width="960"
+    d:Background="{DynamicResource ApplicationBackgroundBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Round"
+    WindowStartupLocation="CenterScreen"
+    Topmost="True">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar
+            Grid.Row="0"
+            Title="Hardware Stress Test &amp; Comprehensive Benchmark"
+            Icon="pack://application:,,,/Assets/applicationIcon-256.png"
+            UseSnapLayout="True"
+            CanMaximize="False"
+            ShowMaximize="False"
+            ShowClose="True"
+            ShowMinimize="False" />
+
+        <DockPanel Margin="24,8,24,18" Grid.Row="1">
+            <!-- Header section -->
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,12">
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+                    🔥 Kiểm Tra Quá Tải &amp; Chấm Điểm Toàn Diện Hệ Thống
+                </TextBlock>
+                <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Margin="0,4,0,0" TextWrapping="Wrap">
+                    Đang thử nghiệm toàn diện 5 thành phần: CPU Đa nhân (AVX2/FP64), CPU Đơn nhân (Peak Turbo &amp; IPC), GPU Đồ họa nặng (Direct3D Render &amp; Compute), Băng thông &amp; Sức khỏe RAM, Tốc độ Đọc/Ghi &amp; SMART Ổ cứng SSD/NVMe.
+                </TextBlock>
+
+                <!-- Hardware info card (4 Columns: CPU, GPU, RAM, Disk) -->
+                <Border Background="{DynamicResource ControlFillColorDefaultBrush}" CornerRadius="8" Padding="12,8" Margin="0,10,0,0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock FontSize="11" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Bộ vi xử lý (CPU):" />
+                            <TextBlock Name="tbCpuInfo" FontSize="12.5" FontWeight="SemiBold" Text="Đang phát hiện CPU..." TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock FontSize="11" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Đồ họa (GPU):" />
+                            <TextBlock Name="tbGpuInfo" FontSize="12.5" FontWeight="SemiBold" Text="Đang phát hiện GPU..." TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Margin="8,0,0,0">
+                            <TextBlock FontSize="11" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Bộ nhớ (RAM):" />
+                            <TextBlock Name="tbRamInfo" FontSize="12.5" FontWeight="SemiBold" Text="Đang kiểm tra RAM..." TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Margin="8,0,0,0">
+                            <TextBlock FontSize="11" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Ổ cứng (SSD/NVMe):" />
+                            <TextBlock Name="tbDiskInfo" FontSize="12.5" FontWeight="SemiBold" Text="Đang kiểm tra Ổ cứng..." TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!-- Bottom action buttons -->
+            <StackPanel
+                Name="spButtons"
+                Orientation="Horizontal"
+                DockPanel.Dock="Bottom"
+                Height="45"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,12,0,0">
+
+                <ui:Button
+                    Name="btnCancel"
+                    Width="160"
+                    Height="38"
+                    Appearance="Secondary"
+                    Click="btnCancel_Click">
+                    Hủy Bỏ
+                </ui:Button>
+
+                <ui:Button
+                    Name="btnRerun"
+                    Margin="16,0,0,0"
+                    Width="160"
+                    Height="38"
+                    Appearance="Primary"
+                    Visibility="Collapsed"
+                    Click="btnRerun_Click">
+                    ⚡ Chạy Lại Test
+                </ui:Button>
+
+                <ui:Button
+                    Name="btnClose"
+                    Margin="16,0,0,0"
+                    Width="140"
+                    Height="38"
+                    Appearance="Secondary"
+                    Visibility="Collapsed"
+                    Click="btnClose_Click">
+                    Đóng
+                </ui:Button>
+            </StackPanel>
+
+            <!-- Center Content -->
+            <Grid>
+                <!-- Testing / Progress Card -->
+                <Border
+                    Name="borderProgress"
+                    Background="{DynamicResource ControlFillColorDefaultBrush}"
+                    CornerRadius="10"
+                    Padding="16"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Visibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Name="tbStatus"
+                            Grid.Row="0"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                            Text="⚡ Giai đoạn 1/5: Đang kiểm tra 100% công suất CPU Đa nhân (AVX2 / Multi-Thread)..." />
+
+                        <ProgressBar
+                            Name="pbStatus"
+                            Grid.Row="1"
+                            Height="10"
+                            Margin="0,12,0,8"
+                            Minimum="0"
+                            Maximum="100"
+                            Value="0" />
+
+                        <TextBlock
+                            Name="tbMetrics"
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                            Text="Thời gian: 0s / 24s | Tiến độ: 0% | Trạng thái: Đang khởi tạo các luồng tính toán..." />
+
+                        <!-- 3D Viewport to engage hardware GPU Direct3D pipeline -->
+                        <Border Grid.Row="3" Margin="0,12,0,0" CornerRadius="8" ClipToBounds="True" Background="#0A0A0A" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                            <Viewport3D Name="vp3D">
+                                <Viewport3D.Camera>
+                                    <PerspectiveCamera x:Name="cam" Position="0, 0, 5" LookDirection="0, 0, -5" UpDirection="0, 1, 0" FieldOfView="60" />
+                                </Viewport3D.Camera>
+                                <ModelVisual3D>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup x:Name="modelGroup">
+                                            <DirectionalLight Color="#FFFFFF" Direction="-1, -1, -3" />
+                                            <DirectionalLight Color="#00B294" Direction="1, 1, -2" />
+                                            <AmbientLight Color="#333333" />
+                                            <GeometryModel3D x:Name="cubeModel">
+                                                <GeometryModel3D.Geometry>
+                                                    <MeshGeometry3D
+                                                        Positions="-1,1,1 1,1,1 1,-1,1 -1,-1,1 -1,1,-1 1,1,-1 1,-1,-1 -1,-1,-1 -1,1,-1 -1,1,1 -1,-1,1 -1,-1,-1 1,1,1 1,1,-1 1,-1,-1 1,-1,1 -1,1,-1 1,1,-1 1,1,1 -1,1,1 -1,-1,1 1,-1,1 1,-1,-1 -1,-1,-1"
+                                                        TriangleIndices="0 2 1 0 3 2 4 5 6 4 6 7 8 10 9 8 11 10 12 14 13 12 15 14 16 18 17 16 19 18 20 22 21 20 23 22" />
+                                                </GeometryModel3D.Geometry>
+                                                <GeometryModel3D.Material>
+                                                    <MaterialGroup>
+                                                        <DiffuseMaterial>
+                                                            <DiffuseMaterial.Brush>
+                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                                    <GradientStop Color="#0078D4" Offset="0.0" />
+                                                                    <GradientStop Color="#00B294" Offset="0.5" />
+                                                                    <GradientStop Color="#E67E22" Offset="0.8" />
+                                                                    <GradientStop Color="#881798" Offset="1.0" />
+                                                                </LinearGradientBrush>
+                                                            </DiffuseMaterial.Brush>
+                                                        </DiffuseMaterial>
+                                                        <SpecularMaterial SpecularPower="80">
+                                                            <SpecularMaterial.Brush>
+                                                                <SolidColorBrush Color="#FFFFFF" Opacity="0.7"/>
+                                                            </SpecularMaterial.Brush>
+                                                        </SpecularMaterial>
+                                                    </MaterialGroup>
+                                                </GeometryModel3D.Material>
+                                                <GeometryModel3D.Transform>
+                                                    <Transform3DGroup>
+                                                        <RotateTransform3D>
+                                                            <RotateTransform3D.Rotation>
+                                                                <AxisAngleRotation3D x:Name="rotX" Axis="1,0,0" Angle="0" />
+                                                            </RotateTransform3D.Rotation>
+                                                        </RotateTransform3D>
+                                                        <RotateTransform3D>
+                                                            <RotateTransform3D.Rotation>
+                                                                <AxisAngleRotation3D x:Name="rotY" Axis="0,1,0" Angle="0" />
+                                                            </RotateTransform3D.Rotation>
+                                                        </RotateTransform3D>
+                                                        <RotateTransform3D>
+                                                            <RotateTransform3D.Rotation>
+                                                                <AxisAngleRotation3D x:Name="rotZ" Axis="0,0,1" Angle="0" />
+                                                            </RotateTransform3D.Rotation>
+                                                        </RotateTransform3D>
+                                                    </Transform3DGroup>
+                                                </GeometryModel3D.Transform>
+                                            </GeometryModel3D>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                            </Viewport3D>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Results Card (Visible when test completes) -->
+                <Border
+                    Name="borderResults"
+                    Background="{DynamicResource ControlFillColorDefaultBrush}"
+                    CornerRadius="10"
+                    Padding="16"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,0,14">
+                            <TextBlock FontSize="18" FontWeight="Bold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="🏆 Bảng Kết Quả Đánh Giá Hiệu Năng &amp; Sức Khỏe Phần Cứng" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Hệ thống đã hoàn thành bài kiểm tra tải nặng 5 thành phần phần cứng an toàn, ổn định và chính xác." Margin="0,4,0,0" />
+                        </StackPanel>
+
+                        <!-- 5 Score Cards (CPU Multi, CPU Single, GPU, RAM, Disk) -->
+                        <Grid Grid.Row="1" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- 1. CPU Multi-Core Score Card -->
+                            <Border Grid.Column="0" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="10" Padding="10,12" Margin="0,0,5,0" BorderBrush="#0078D4" BorderThickness="1.5">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock FontSize="12.5" FontWeight="Medium" Foreground="#0078D4" Text="💻 CPU Đa Nhân" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbCpuMultiScore" FontSize="26" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="0" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="10.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="AVX2 Đa luồng" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 2. CPU Single-Core Score Card -->
+                            <Border Grid.Column="1" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="10" Padding="10,12" Margin="3,0,3,0" BorderBrush="#E67E22" BorderThickness="1.5">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock FontSize="12.5" FontWeight="Medium" Foreground="#E67E22" Text="🎯 CPU Đơn Nhân" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbCpuSingleScore" FontSize="26" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="0" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="10.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Peak Turbo &amp; IPC" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 3. GPU Score Card -->
+                            <Border Grid.Column="2" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="10" Padding="10,12" Margin="3,0,3,0" BorderBrush="#00B294" BorderThickness="1.5">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock FontSize="12.5" FontWeight="Medium" Foreground="#00B294" Text="🎮 GPU Đồ Họa" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbGpuScore" FontSize="26" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="0" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="10.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Direct3D Render" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 4. RAM Score Card -->
+                            <Border Grid.Column="3" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="10" Padding="10,12" Margin="3,0,3,0" BorderBrush="#9B59B6" BorderThickness="1.5">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock FontSize="12.5" FontWeight="Medium" Foreground="#9B59B6" Text="🧠 Bộ Nhớ RAM" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbRamScore" FontSize="26" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="0" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbRamSub" FontSize="10.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Băng thông GB/s" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 5. Disk Score Card -->
+                            <Border Grid.Column="4" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="10" Padding="10,12" Margin="5,0,0,0" BorderBrush="#2ECC71" BorderThickness="1.5">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock FontSize="12.5" FontWeight="Medium" Foreground="#2ECC71" Text="💾 Ổ Cứng SSD" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbDiskScore" FontSize="26" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorPrimaryBrush}" Text="0" HorizontalAlignment="Center" />
+                                    <TextBlock Name="tbDiskSub" FontSize="10.5" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Tốc độ Đọc/Ghi" Margin="0,4,0,0" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <!-- Total Score & Rating summary -->
+                        <Border Grid.Row="2" Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="8" Padding="14,12" Margin="0,14,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Total Score Badge -->
+                                <Border Grid.Column="0" Background="#18FFFFFF" CornerRadius="8" Padding="16,8" Margin="0,0,16,0" BorderBrush="#E056FD" BorderThickness="1">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="🚀 TỔNG ĐIỂM HỆ THỐNG" FontSize="11" FontWeight="Bold" Foreground="#E056FD" HorizontalAlignment="Center" />
+                                        <TextBlock Name="tbTotalScore" FontSize="30" FontWeight="Bold" Foreground="#E056FD" Text="0" HorizontalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Rating details -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Name="tbRating" FontSize="14" FontWeight="SemiBold" Foreground="#2ECC71" Text="Đánh giá: Xuất sắc - Hệ thống hoạt động mượt mà và bền bỉ!" />
+                                    <TextBlock Name="tbDetails" FontSize="11.5" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="0,4,0,0" TextWrapping="Wrap" Text="Đang xử lý..." />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</ui:UiWindow>

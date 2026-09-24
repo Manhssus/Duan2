@@ -1,0 +1,40 @@
+2026-09-04 15:28:39.965|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-04 15:28:39.965|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-04 15:28:39.965|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-04 15:28:39.965|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-04 15:28:39.965|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-11 16:34:07.602|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-11 16:34:07.602|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-11 16:34:07.602|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-11 16:34:07.602|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-11 16:34:07.602|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-11 17:19:56.602|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-11 17:19:56.602|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-11 17:19:56.602|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-11 17:19:56.602|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-11 17:19:56.602|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-13 17:32:44.071|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-13 17:32:44.071|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-13 17:32:44.072|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-13 17:32:44.072|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-13 17:32:44.073|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-13 19:10:28.032|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-13 19:10:28.032|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-13 19:10:28.032|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-13 19:10:28.032|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-13 19:10:28.033|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-13 19:51:26.407|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-13 19:51:26.407|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-13 19:51:26.407|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-13 19:51:26.407|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-13 19:51:26.407|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-17 20:09:06.012|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-17 20:09:06.012|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-17 20:09:06.012|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-17 20:09:06.012|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-17 20:09:06.012|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully
+2026-09-17 20:20:35.265|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|Initializing App
+2026-09-17 20:20:35.265|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|Main window class registered
+2026-09-17 20:20:35.265|info|App.cpp:void __cdecl App::_RegisterWndClasses(void) const|DDF window class registered
+2026-09-17 20:20:35.265|info|App.cpp:bool __cdecl App::Initialize(struct HINSTANCE__ *)|App initialized successfully
+2026-09-17 20:20:35.265|info|Utils.cpp:bool __cdecl Utils::Hasher::Initialize(void)|Utils::Hasher initialized successfully

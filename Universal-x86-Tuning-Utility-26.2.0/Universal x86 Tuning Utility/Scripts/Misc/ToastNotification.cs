@@ -1,0 +1,34 @@
+using Microsoft.Toolkit.Uwp.Notifications;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Universal_x86_Tuning_Utility.Scripts.Misc
+{
+    internal class ToastNotification
+    {
+        public static void ShowToastNotification(string title = "", string body = "")
+        {
+            try
+            {
+                string iconUri = "";
+                iconUri = "pack://application:,,,/Assets/applicationIcon-1024.png";
+
+                string path = AppContext.BaseDirectory;
+                iconUri = path + "Assets\\icon.png";
+
+                new ToastContentBuilder()
+                   .AddText(title)
+                   .AddText(body)
+                   .AddAppLogoOverride(new Uri(iconUri))
+                   .Show();
+            }
+            catch (Exception ex)
+            {
+                DiagnosticLogger.LogError(ex, "Failed to show toast notification");
+            }
+        }
+    }
+}
